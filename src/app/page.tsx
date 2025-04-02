@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { useState } from "react"
-
 
 export default function CarMaintenancePage() {
   const [selectedCar, setSelectedCar] = useState(0)
@@ -202,28 +202,30 @@ export default function CarMaintenancePage() {
     <section className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-blue-600 text-white shadow-lg">
-        <h1 className="text-3xl font-bold text-center p-4">Mantenimiento y Especificacion de Vehiculos</h1>
-        <p className="text-center pb-4">de los 10 autos más populares</p>
+        <h1 className="text-3xl font-bold text-center p-4">Mantenimiento y Especificaciones de Vehículos</h1>
+        <p className="text-center pb-4">De los 10 autos más populares en Colombia</p>
       </header>
 
       {/* Menu de navegación */}
       <nav className="bg-white shadow-md py-4 sticky top-0 z-10">
-        <ul className="flex space-x-1 md:space-x-4 pb-2 container mx-auto px-4 overflow-x-auto">
-          {cars.map((car, index) => (
-            <li key={index}>
-              <button
-                className={`px-3 py-2 rounded-md text-sm whitespace-nowrap transition-colors duration-200 ${
-                  selectedCar === index
-                    ? "bg-blue-600 text-white font-medium"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-800"
-                }`}
-                onClick={() => setSelectedCar(index)}
-              >
-                {car.name}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="container mx-auto px-4">
+          <ul className="flex space-x-1 md:space-x-4 pb-2 overflow-x-auto">
+            {cars.map((car, index) => (
+              <li key={index}>
+                <button
+                  className={`px-3 py-2 rounded-md text-sm whitespace-nowrap transition-colors duration-200 ${
+                    selectedCar === index
+                      ? "bg-blue-600 text-white font-medium"
+                      : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+                  }`}
+                  onClick={() => setSelectedCar(index)}
+                >
+                  {car.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
       {/* Contenido principal */}
@@ -240,7 +242,7 @@ export default function CarMaintenancePage() {
             <figure className="md:w-1/2 mb-6 md:mb-0 md:pr-6">
               <img
                 src={cars[selectedCar].image || "/placeholder.svg"}
-                alt={cars[selectedCar].name}
+                alt={`${cars[selectedCar].name}`}
                 className="w-full h-64 object-cover rounded-lg shadow-md"
               />
             </figure>
@@ -248,10 +250,10 @@ export default function CarMaintenancePage() {
               <h3 className="text-xl font-semibold text-gray-800 mb-4">Especificaciones Técnicas</h3>
               <dl className="grid grid-cols-1 gap-4">
                 {Object.entries(cars[selectedCar].specs).map(([key, value]) => (
-                  <dt key={key} className="bg-gray-50 p-3 rounded-md">
-                    <span className="text-gray-500 font-medium capitalize">{key}: </span>
+                  <div key={key} className="bg-gray-50 p-3 rounded-md">
+                    <dt className="text-gray-500 font-medium capitalize inline">{key}: </dt>
                     <dd className="text-gray-800 inline">{value}</dd>
-                  </dt>
+                  </div>
                 ))}
               </dl>
             </section>
